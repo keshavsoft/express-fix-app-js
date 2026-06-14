@@ -1,5 +1,5 @@
 export default function parseInput({ jsFilePath,
-    inCheckLines = {}, showLog }) {
+    inCheckLines = {}, showLog, inStartEndPoint = "Api" }) {
 
     const [...args] = process.argv.slice(2);
 
@@ -8,6 +8,7 @@ export default function parseInput({ jsFilePath,
             ? showLog
             : args[1] === "true",
         inJsFilePath: jsFilePath || process.cwd(),
-        inCheckLines
+        inCheckLines,
+        inStartEndPoint
     };
 };

@@ -11,7 +11,7 @@ const alterLines = ({ inCheckLines, inStartEndPoint }) => {
     inCheckLines.useLines.duplicationCheck = inCheckLines.useLines.duplicationCheck.replaceAll("<startEndPoint>", inStartEndPoint).replaceAll("'", '"');
 };
 
-const updateAppJs = ({ inJsFilePath, inCheckLines, inStartEndPoint = "Api",
+const updateAppJs = ({ inJsFilePath, inCheckLines, inStartEndPoint,
     showLog = false }) => {
 
     let localCheckLines = inCheckLines || checkLines;
