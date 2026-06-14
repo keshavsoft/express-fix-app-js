@@ -1,18 +1,19 @@
 {
     "importLines": {
-        "toInsertLine": "import funcFrom${endpoint} from './${endpoint}/controller.js';",
-        "duplicationCheck": "from './${endpoint}/controller.js'",
+        "toInsertLine": "import { router as routerFrom<startEndPoint> } from './<startEndPoint>/routes.js';",
+        "duplicationCheck": "from './<startEndPoint>/routes.js';",
         "insertAfter": [
-            "import funcFrom",
+            "import routerFrom",
+            "import { router as routerFrom",
             "import express"
         ]
     },
     "useLines": {
-        "toInsertLine": "router.post('/${endpoint}', express.json(), (req, res) => funcFrom${endpoint}({ req, res, inTablePath: tablePath }));",
-        "duplicationCheck": "router.use('/${endpoint}'",
+        "toInsertLine": "app.use('/<startEndPoint>', routerFrom<startEndPoint>);",
+        "duplicationCheck": "app.use('/<startEndPoint>'",
         "insertAfter": [
-            "router.",
-            "const router = "
+            "app.",
+            "const app = "
         ]
     }
 }
