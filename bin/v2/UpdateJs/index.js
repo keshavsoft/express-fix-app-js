@@ -5,10 +5,10 @@ import alterFile from "./common/AlterFile/index.js";
 
 const alterLines = ({ inCheckLines, inStartEndPoint }) => {
     inCheckLines.importLines.toInsertLine = inCheckLines.importLines.toInsertLine.replaceAll("<startEndPoint>", inStartEndPoint);
-    inCheckLines.importLines.duplicationCheck = inCheckLines.importLines.duplicationCheck.replaceAll("<startEndPoint>", inStartEndPoint);
+    inCheckLines.importLines.duplicationCheck = inCheckLines.importLines.duplicationCheck.replaceAll("<startEndPoint>", inStartEndPoint).replaceAll("'", '"');
 
     inCheckLines.useLines.toInsertLine = inCheckLines.useLines.toInsertLine.replaceAll("<startEndPoint>", inStartEndPoint);
-    inCheckLines.useLines.duplicationCheck = inCheckLines.useLines.duplicationCheck.replaceAll("<startEndPoint>", inStartEndPoint);
+    inCheckLines.useLines.duplicationCheck = inCheckLines.useLines.duplicationCheck.replaceAll("<startEndPoint>", inStartEndPoint).replaceAll("'", '"');
 };
 
 const updateAppJs = ({ inJsFilePath, inCheckLines, inStartEndPoint = "Api",
