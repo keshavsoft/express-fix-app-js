@@ -1,28 +1,23 @@
 // v2/AppJs/index.js
-
+import fixAnyJs from "express-fix-any-js";
 import checkLines from "./checkLines.json" with {type: "json"};
 import alterFile from "./common/AlterFile/index.js";
 
-const updateAppJs = ({ inJsFilePath, inCheckLines,
+const alterLines = ({ inCheckLines, inStartEndPoint }) => {
+    inCheckLines.importLines.toInsertLine = inCheckLines.importLines.toInsertLine.replaceAll("<startEndPoint>", inStartEndPoint);
+};
+
+const updateAppJs = ({ inJsFilePath, inCheckLines, inStartEndPoint = "Api",
     showLog = false }) => {
 
-    const localCheckLines = inCheckLines || checkLines;
-    // console.log("bbbbbbbbbbbb : ", localCheckLines);
+    let localCheckLines = inCheckLines || checkLines;
 
-    alterFile({
-        jsFilePath: inJsFilePath,
-        toInsertLine: localCheckLines.importLines.toInsertLine,
-        duplicationCheck: localCheckLines.importLines.duplicationCheck,
-        insertAfter: localCheckLines.importLines.insertAfter,
-        showLog
-    });
+    alterLines({ inCheckLines: localCheckLines, inStartEndPoint });
 
-    alterFile({
+    fixAnyJs({
+        showLog,
         jsFilePath: inJsFilePath,
-        toInsertLine: localCheckLines.useLines.toInsertLine,
-        duplicationCheck: localCheckLines.useLines.duplicationCheck,
-        insertAfter: localCheckLines.useLines.insertAfter,
-        showLog
+        inCheckLines: localCheckLines
     });
 
     return false;
