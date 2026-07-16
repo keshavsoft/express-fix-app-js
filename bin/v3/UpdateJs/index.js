@@ -18,13 +18,13 @@ const updateAppJs = ({ inJsFilePath, inCheckLines, inStartEndPoint,
 
     alterLines({ inCheckLines: localCheckLines, inStartEndPoint });
 
-    fixAnyJs({
+    const fromFixAnyJs = fixAnyJs({
         showLog,
         jsFilePath: inJsFilePath,
         inCheckLines: localCheckLines
     });
 
-    return false;
+    return fromFixAnyJs;
 };
 
 export default updateAppJs;
