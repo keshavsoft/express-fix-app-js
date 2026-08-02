@@ -1,7 +1,14 @@
-import updateJs from "./UpdateJs/index.js";
+import fixAnyJs from 'express-fix-any-js';
 
-const run = (args) => {
-  updateJs(args);
+const fileType = "fromAppJs";
+
+const startFunc = ({ jsFilePath, inStartEndPoint }) => {
+  return fixAnyJs({
+    jsFilePath,
+    inFileType: "fromAppJs",
+    inFolderNameToInsert: inStartEndPoint
+  });
+
 };
 
-export default run;
+export default startFunc;
